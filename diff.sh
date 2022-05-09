@@ -35,7 +35,7 @@ set -o xtrace
 git checkout $BASE_BRANCH && git pull
 git checkout $HEAD_BRANCH && git pull
 
-GIT_DIFF=$(git diff $BASE_BRANCH...$HEAD_BRANCH)
+GIT_DIFF=$(git diff $BASE_BRANCH $HEAD_BRANCH)
 ADD_COUNT=$(echo $GIT_DIFF | grep ^+ | grep @ts-nocheck | wc -l)
 REMOVE_COUNT=$(echo $GIT_DIFF | grep ^- | grep @ts-nocheck | wc -l)
 
