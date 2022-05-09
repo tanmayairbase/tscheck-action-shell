@@ -1,0 +1,16 @@
+name: 'No new @ts-nocheck'
+description: 'Runs git diff against the base branch and checks if new @ts-nochecks are added.'
+author: 'Tanmay Rajani'
+branding:
+  icon: 'shield'
+  color: 'green'
+
+runs:
+  using: 'composite'
+  steps:
+    - id: run-git-diff
+      name: Run git diff
+      run: ${{ github.action_path }}/diff.sh
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
