@@ -30,7 +30,7 @@ if [[ -z "$BASE_BRANCH" ]]; then
   exit 1
 fi
 
-set -o xtrace
+# set -o xtrace
 
 git fetch
 git checkout $BASE_BRANCH && git pull
@@ -41,8 +41,10 @@ ADD_COUNT=$(echo "$GIT_DIFF" | grep ^+ | grep @ts-nocheck | wc -l)
 REMOVE_COUNT=$(echo "$GIT_DIFF" | grep ^- | grep @ts-nocheck | wc -l)
 
 if [[ $ADD_COUNT > $REMOVE_COUNT ]]; then
-  echo "Oh no! This PR introduces new @ts-nochecks :("
+  DIFF_COUNT=`expr $ADD_COUNT - $REMOVE_COUNT`
+  echo "Oh no! This PR introduces $DIFF_COUNT new @ts-nocheck instance(s) :("
   exit 1
 fi
 
+echo "No new @ts-nocheck instance(s) introduced! :)"
 exit 0
