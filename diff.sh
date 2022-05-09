@@ -32,6 +32,7 @@ fi
 
 set -o xtrace
 
+git fetch
 git checkout $BASE_BRANCH && git pull
 git checkout $HEAD_BRANCH && git pull
 
